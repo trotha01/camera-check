@@ -29,6 +29,6 @@ camera-check \
 
 
 ## TODO
-add tests
-log to file/log rotation
-add in the actual camera check
+- add tests
+- log to file/log rotation
+- add in the actual camera check
