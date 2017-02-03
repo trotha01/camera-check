@@ -1,7 +1,7 @@
 A basic check to see that the cameras are still running
 
 # RUNNING
-*With Binary*
+### With Binary
 ```
 camera-check \
 	--smtp-server="$SMTP_SERVER" \
@@ -14,7 +14,7 @@ camera-check \
 	--minute-threshold=10
 ```
 
-*With Golang*
+### With Golang
 1. Set the env variables:
   ```
   export SMTP_SERVER=""
