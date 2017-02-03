@@ -1,0 +1,12 @@
+#!/bin/bash
+
+go run main.go \
+	--smtp-server="$SMTP_SERVER" \
+	--smtp-port="$SMTP_PORT" \
+	--username="$SMTP_USER" \
+	--password="$SMTP_PSWD" \
+	--from="$FROM" \
+	--to="$TO" \
+	--retries="$RETRIES" \
+	--last-alert-file="last_alert" \
+	--minute-threshold=10
