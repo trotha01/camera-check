@@ -69,7 +69,7 @@ func (n Notifier) _email(message string, attempt int) {
 		return
 	}
 
-	err := ioutil.WriteFile(
+	err = ioutil.WriteFile(
 		n.lastAlertFile,
 		[]byte(time.Now().UTC().Format(n.timeFormat)),
 		0644)
@@ -84,11 +84,14 @@ func (n Notifier) _email(message string, attempt int) {
 func (n Notifier) lastAlertTime() (time.Time, error) {
 	content, err := ioutil.ReadFile(n.lastAlertFile)
 	if os.IsNotExist(err) {
-		return time.Unix(0, 0), nil
+		fmt.Println("here 1")
+		return time.Time{}, nil
 	}
 	if err != nil {
+		fmt.Println("here 2")
 		log.Println("Error getting time of last alert", err)
 	}
+	fmt.Println("here 3")
 	return time.Parse(n.timeFormat, string(content))
 }
 
@@ -131,6 +134,6 @@ func main() {
 
 	err = cameraCheck()
 	if err != nil {
-		notifier.email(err)
+		notifier.email(err.Error())
 	}
 }
