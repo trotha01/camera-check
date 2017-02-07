@@ -39,7 +39,7 @@ func (n Notifier) email(message string) {
 
 func (n Notifier) _email(message string, attempt int) {
 	if attempt > n.retries {
-		log.Println("max attempts reached sending message: %s", message)
+		log.Printf("max attempts reached sending message: %s", message)
 	}
 
 	auth := smtp.PlainAuth("",
@@ -92,6 +92,8 @@ func (n Notifier) lastAlertTime() (time.Time, error) {
 	return time.Parse(n.timeFormat, string(content))
 }
 
+const timeFormat = "Jan 2, 2006 15:04:05"
+
 func (n *Notifier) parseConfig() {
 	var smtpServer = flag.String("smtp-server", "localhost", "the email server to send alert")
 	var smtpPort = flag.String("smtp-port", "587", "the email server port to use")
@@ -113,7 +115,7 @@ func (n *Notifier) parseConfig() {
 	n.retries = *retries
 	n.lastAlertFile = *lastAlertFile
 	n.minuteThreshold = *minuteThreshold
-	n.timeFormat = "Jan 2, 2006 15:04:05"
+	n.timeFormat = timeFormat
 }
 
 func main() {
