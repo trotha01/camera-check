@@ -1,6 +1,19 @@
 language: go
-
 go:
   - 1.7.x
-
+before_script:
+  - go vet
 script: go test -v
+after_script:
+  - go build
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: P9KMB8EoDQnfCjzCm5pvqVnpXu9IgoTiM4fZ0gC6Q8n5Z4K+G3ZZVAKeYqf6QqSCrv3jGjPKTISK91Pn7HHjZs1epARrwc6u9++CACqTcGAfTMz6o6rqorH25+BjqOJEVjr5YAt6lJsPEiD2p4y5xGCCsBqXgiNmXJAQKk8WHRY5KyfXgPiX0Fadj4caaVNvfvzRfI5TW+vbR3hhaHkqtbb9W+1FJRcxaHcSAJ5p/vsI6n36ohNH4cqTJf0oOw69a3ref2fVOtiv8Nf+oNSR0sazX3bKY+hLzCpyEpNaUz1kJ6y9zQmzotKRpIkxA5yn31MU2ILVEIofUVuoUfXYAvANDf/wx+dHM7m5vh96K08UFRB50k/CnY4K+tZkRUbsmn7hgEzvarY+gNn26TK8nzyrDTFP1iNL7VSHLrU/CknxDxnwIxI1V0eAcaAdcbCM1Y3NDgbB1Bsg9hLlJz3V43oat80gIZ9cAfA21elSPgmYL4/3Gm5jGsx8gbHBTnBu+LWG7qW1+Q2muxILNzy0YnF2gN0Wh6IyfDuH1n+nrLv1JOLVdsdqEkSVUwXsvDFk7JuB83R9vDwjCTjOBrfsv3xEGQ+wIBCumCAvPShE7oLCC54Sr3PXZwWdYyTOYR1HEOT/vuAF18+Ul5u8B2bmMfK2qKn6GxS1ibDu5/GeBO4=
+  file: camera-check
+  on:
+    repo: trotha01/camera-check
+    tags: true
+    branch: travis
