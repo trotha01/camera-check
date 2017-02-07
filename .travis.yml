@@ -5,7 +5,7 @@ before_script:
   - go vet
 script: go test -v
 after_success:
-  - go build
+  - go build -v
 
 deploy:
   provider: releases
